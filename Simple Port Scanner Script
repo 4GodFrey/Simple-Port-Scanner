@@ -1,0 +1,46 @@
+# You must first install both the time and socket modules in your system if you haven't already for the code to work.
+# I added pyfiglet for some flare.
+import time
+import socket
+import pyfiglet
+
+line_banner = pyfiglet.figlet_format("CYB 333 PROJECT")
+print(line_banner)
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# This line will ask for the target's website or IP address to be scanned.
+# Be very careful when scanning hosts, because port scanning can be illegal.
+# Make sure to scan hosts that are designed for PenTesting such as hackthissite.org.
+# Or if you want to be safe, you scan your own local host: 127.0.0.1.
+target = input('Enter website or IP address to scan: ')
+
+# This line will tell you that the scan has started and display the target's IP address.
+target_ip = socket.gethostbyname(target)
+print('Scanning target:', target_ip)
+
+# This line is the function for scanning ports.
+def port_scan(port):
+    try:
+        s.connect((target_ip, port))
+        return True
+    except:
+        return False
+
+
+start = time.time()
+
+# This line tells the code to scan: from port 0 to 7, it also tells you if those ports are open or closed.
+# You can scan 65,535 ports starting from 0, for this I'm using 0 to 7 range.
+for port in range(7):
+    if port_scan(port):
+        print(f'port {port} is open')
+    else:
+        print(f'port {port} is closed')
+
+end = time.time()
+print(f'Time taken {end - start:.2f} seconds')
+
+# This line is just a simple message at end the 12/14/2021.
+line_banner1 = pyfiglet.figlet_format("Merry Christmas and Happy New year!!")
+print(line_banner1)
