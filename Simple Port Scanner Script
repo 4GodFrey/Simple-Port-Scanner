@@ -1,5 +1,5 @@
 # You must first install both the time and socket modules in your system if you haven't already for the code to work.
-# I added pyfiglet for some flare.
+# I added pyfiglet (lettering) for some design flare.
 import time
 import socket
 import pyfiglet
