@@ -19,6 +19,7 @@ target = input('Enter website or IP address to scan: ')
 target_ip = socket.gethostbyname(target)
 print('Scanning target:', target_ip)
 
+
 # This line is the function for scanning ports.
 def port_scan(port):
     try:
